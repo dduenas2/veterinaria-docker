@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # Base de Datos PostgreSQL
+  database:
+    image: postgres:15-alpine
+    container_name: veterinaria-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: veterinaria
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - veterinaria-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API Flask
+  backend:
+    build: ./backend
+    container_name: veterinaria-backend
+    environment:
+      DB_HOST: database
+      DB_NAME: veterinaria
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_PORT: 5432
+    ports:
+      - "5000:5000"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - veterinaria-network
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+
+  # Frontend React
+  frontend:
+    build: ./frontend
+    container_name: veterinaria-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - veterinaria-network
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+    restart: unless-stopped
+
+networks:
+  veterinaria-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
