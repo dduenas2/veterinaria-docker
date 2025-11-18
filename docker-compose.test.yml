@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # Base de Datos de Testing
+  database-test:
+    image: postgres:15-alpine
+    container_name: veterinaria-db-test
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: veterinaria_test
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5433:5432"
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Backend de Testing
+  backend-test:
+    build: ./backend
+    container_name: veterinaria-backend-test
+    environment:
+      DB_HOST: database-test
+      DB_NAME: veterinaria_test
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_PORT: 5432
+    ports:
+      - "5001:5000"
+    depends_on:
+      database-test:
+        condition: service_healthy
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
+
