@@ -565,11 +565,15 @@ veterinaria-docker/
 
 ## 🌐 **API Endpoints**
 
-### **Base URL:** `http://localhost:5000/api`
+**Base URL:** `http://localhost:5000`
+
+Todos los endpoints de la API comienzan con la base URL anterior.
+
+---
 
 ### **Health Check:**
 ```http
-GET /api/health
+GET http://localhost:5000/api/health
 ```
 **Respuesta:**
 ```json
@@ -585,17 +589,17 @@ GET /api/health
 
 #### **Listar todos los clientes:**
 ```http
-GET /api/clientes
+GET http://localhost:5000/api/clientes
 ```
 
 #### **Obtener un cliente:**
 ```http
-GET /api/clientes/{id}
+GET http://localhost:5000/api/clientes/{id}
 ```
 
 #### **Crear cliente:**
 ```http
-POST /api/clientes
+POST http://localhost:5000/api/clientes
 Content-Type: application/json
 
 {
@@ -609,7 +613,7 @@ Content-Type: application/json
 
 #### **Actualizar cliente:**
 ```http
-PUT /api/clientes/{id}
+PUT http://localhost:5000/api/clientes/{id}
 Content-Type: application/json
 
 {
@@ -619,7 +623,7 @@ Content-Type: application/json
 
 #### **Eliminar cliente:**
 ```http
-DELETE /api/clientes/{id}
+DELETE http://localhost:5000/api/clientes/{id}
 ```
 
 ---
@@ -628,17 +632,17 @@ DELETE /api/clientes/{id}
 
 #### **Listar todas las mascotas:**
 ```http
-GET /api/mascotas
+GET http://localhost:5000/api/mascotas
 ```
 
 #### **Obtener una mascota:**
 ```http
-GET /api/mascotas/{id}
+GET http://localhost:5000/api/mascotas/{id}
 ```
 
 #### **Crear mascota:**
 ```http
-POST /api/mascotas
+POST http://localhost:5000/api/mascotas
 Content-Type: application/json
 
 {
@@ -657,12 +661,12 @@ Content-Type: application/json
 
 #### **Listar todas las citas:**
 ```http
-GET /api/citas
+GET http://localhost:5000/api/citas
 ```
 
 #### **Crear cita:**
 ```http
-POST /api/citas
+POST http://localhost:5000/api/citas
 Content-Type: application/json
 
 {
