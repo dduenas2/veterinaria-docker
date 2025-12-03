@@ -1,41 +1,143 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
 
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnp
-.pnp.js
+# Python
+
+__pycache__/
+
+*.py[cod]
+
+*$py.class
+
+*.so
+
+.Python
+
+env/
+
+venv/
+
+ENV/
+
 build/
+
+develop-eggs/
+
 dist/
 
-# Docker
-*.log
+downloads/
 
-# Database
-*.db
-*.sqlite3
-database/data/
+eggs/
+
+.eggs/
+
+lib/
+
+lib64/
+
+parts/
+
+sdist/
+
+var/
+
+wheels/
+
+*.egg-info/
+
+.installed.cfg
+
+*.egg
+
+.pytest_cache/
+
+htmlcov/
+
+.coverage
+
+.coverage.*
+
+coverage.xml
+
+*.cover
+
+
+
+# Node
+
+node_modules/
+
+npm-debug.log*
+
+yarn-debug.log*
+
+yarn-error.log*
+
+package-lock.json
+
+.npm
+
+.eslintcache
+
+build/
+
+.env.local
+
+.env.development.local
+
+.env.test.local
+
+.env.production.local
+
+
 
 # IDEs
+
 .vscode/
+
 .idea/
+
 *.swp
+
 *.swo
 
-# OS
+*~
+
 .DS_Store
+
+
+
+# Docker
+
+.dockerignore
+
+
+
+# Logs
+
+*.log
+
+logs/
+
+
+
+# Environment
+
+.env
+
+*.env
+
+
+
+# Backups
+
+*.backup
+
+*.bak
+
+
+
+# OS
+
 Thumbs.db
 
-# Environment variables
-.env
+Desktop.ini
+
